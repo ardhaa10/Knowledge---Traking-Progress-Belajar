@@ -1,12 +1,24 @@
-Cara run lokal, import DB, set .env, daftar akun uji
+**Cara run lokal, import DB, set .env, daftar akun uji**
 
 Database:
 CREATE DATABASE knowledge;
 USE knowledge;
 
-Import tabel (copy dari knowledge.sql)
+Import tabel (copy dari knowledge.sql) **(user ada yang saya hapus karena saat push GitHub Push Protection memblokir karena Google OAuth tokens bocor di knowledge.sql)**
 
 kemudian ganti/hapus password db di env
+
+env:
+DB_HOST=localhost
+DB_USER=root
+DB_PASS="pakai password kalo ada"
+DB_NAME=knowledge
+
+GOOGLE_CLIENT_ID= "ISI CLIENT ID"
+GOOGLE_CLIENT_SECRET= "ISI CLIENT SECRET"
+GOOGLE_REDIRECT_URI=http://localhost/belajar-online/app/views/auth/login-proses.php
+
+YOUTUBE_API_KEY= "ISI YOUTUBE API KEY"
 
 
 Start Laragon kemudian : http://localhost/belajar-online/login
