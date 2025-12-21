@@ -4,7 +4,7 @@ Database:
 CREATE DATABASE knowledge;
 USE knowledge;
 
-Import tabel (copy dari knowledge.sql) **(user ada yang saya hapus karena saat push GitHub Push Protection memblokir karena Google OAuth tokens bocor di knowledge.sql)**
+Import tabel (copy dari knowledge.sql) **(Isi sql hanya ada tabel tidak ada data user, dll)**
 
 kemudian ganti/hapus password db di env
 
