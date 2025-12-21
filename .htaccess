@@ -1,0 +1,33 @@
+# ===============================
+# .htaccess USER ONLY - belajar-online
+# ===============================
+
+Options -Indexes
+DirectoryIndex index.php
+
+<FilesMatch "^\.env$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /belajar-online/
+    
+    # ========== USER ROUTES ONLY ==========
+    RewriteRule ^dashboard$ app/views/user/dashboard.php [L]
+    RewriteRule ^jadwal$ app/views/user/jadwal_kelas.php [L]
+    RewriteRule ^kelas/?(\?.*)?$ app/views/user/video_list.php [L,QSA]
+    RewriteRule ^profile$ app/views/user/edit_profile.php [L]
+    RewriteRule ^playlist/([0-9]+)$ app/views/user/playlist.php?id=$1 [L]
+    RewriteRule ^video/([0-9]+)(\?.*)?$ app/views/user/video_player.php?id=$1 [L,QSA]
+    
+    # Auth
+    RewriteRule ^login$ app/views/auth/login.php [L]
+    RewriteRule ^register$ app/views/auth/register.php [L]
+    
+    # Skip files/folders
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ - [L]
+</IfModule>
