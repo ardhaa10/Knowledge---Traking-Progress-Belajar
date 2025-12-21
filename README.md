@@ -4,7 +4,7 @@ Database:
 CREATE DATABASE knowledge;
 USE knowledge;
 
-Import tabel (copy dari knowledge.sql) **(Isi sql hanya ada tabel tidak ada data user, dll)**
+Import tabel (copy dari knowledge.sql) **(Isi sql di repo hanya ada tabel tidak ada data user, dll)**
 
 kemudian ganti/hapus password db di env
 
