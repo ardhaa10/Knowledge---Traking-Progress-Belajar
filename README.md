@@ -44,8 +44,8 @@ pass : user123
 - Reports: `http://belajar-online/app/views/admin/reports.php`
 
 
-## 📱 Fitur
-- ✅ Admin: CRUD User/Playlist/Content/Jadwal
-- ✅ User: Dashboard, Profile, Video Player
-- ✅ Google OAuth Login
-- ✅ Export CSV Reports
+## FITUR
+- Admin: CRUD User/Playlist/Content/Jadwal
+- User: Dashboard, Profile, Video Player
+- Google OAuth Login
+- Export CSV Reports
