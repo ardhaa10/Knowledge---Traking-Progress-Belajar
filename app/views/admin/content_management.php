@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../../controllers/VideoController.php';
 require_once __DIR__ . '/../../controllers/PlaylistController.php';
+require_once __DIR__ . '/../../../config/env.php';
 
 if (!isset($_SESSION['user_name']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../../views/auth/login.php");
@@ -12,6 +13,9 @@ $playlistController = new PlaylistController();
 
 $videos = $videoController->index();
 $playlists = $playlistController->index();
+
+// Ambil YouTube API Key dari environment
+$youtubeApiKey = getenv('YOUTUBE_API_KEY');
 ?>
 
 <!DOCTYPE html>
@@ -504,22 +508,23 @@ $playlists = $playlistController->index();
     </div>
 
     <script>
-        const YT_API_KEY = "AIzaSyAaI2jWRe3s8Xz63dPiKLG8YJA1Z28QzzQ";
-        const playlists = <?= json_encode($playlists) ?>;
-        const searchResultsContainer = document.getElementById('searchResultsContainer');
-        const searchResults = document.getElementById('searchResults');
+    // Ambil API key dari PHP (sudah di-load dari .env)
+    const YT_API_KEY = "<?= htmlspecialchars($youtubeApiKey) ?>";
+    const playlists = <?= json_encode($playlists) ?>;
+    const searchResultsContainer = document.getElementById('searchResultsContainer');
+    const searchResults = document.getElementById('searchResults');
 
-        document.getElementById('searchBtn').addEventListener('click', searchVideos);
-        document.getElementById('searchQuery').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') searchVideos();
-        });
+    document.getElementById('searchBtn').addEventListener('click', searchVideos);
+    document.getElementById('searchQuery').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') searchVideos();
+    });
 
-        async function searchVideos() {
-            const query = document.getElementById('searchQuery').value.trim();
-            if (!query) {
-                alert("Masukkan kata kunci!");
-                return;
-            }
+    async function searchVideos() {
+        const query = document.getElementById('searchQuery').value.trim();
+        if (!query) {
+            alert("Masukkan kata kunci!");
+            return;
+        }
 
             searchResults.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner"></i><p class="mt-2">Mencari video...</p></div>';
             searchResultsContainer.style.display = 'block';
